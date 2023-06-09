@@ -1,0 +1,82 @@
+API - Application Programming Interface
+It is set of commands, functions, objects, protocols that programmer can use to create software OR interact with external system.
+We can access all sorts of data through APIs.
+But We can access only data which is provided by that system.
+There are some data that we can access and use. And some data which is really not our business. So, We cannot access it.
+e.g. OpenWeather API used by yahoo,google
+PoliceAPI
+jQuery provide bunch of functions,objects.
+
+API Terms:
+
+1) EndPoints:
+API endpoints are specific URLs or routes that are exposed by an application or web service to allow clients to interact with it. 
+Here are brief descriptions of common API endpoints:
+
+1. GET: The GET method is used to retrieve data from a server. It is the most common HTTP method and is typically used to read or fetch resources. 
+For example:
+   - `/users`: Retrieve a list of all users.
+   - `/users/{id}`: Retrieve a specific user by their ID.
+
+2. POST: The POST method is used to send data to the server to create new resources. It is commonly used for creating new records or submitting forms. 
+For example:
+   - `/users`: Create a new user by submitting user data in the request body.
+
+3. PUT: The PUT method is used to update existing resources on the server. It replaces the entire resource with the new data provided. 
+For example:
+   - `/users/{id}`: Update an existing user by providing the updated user data in the request body.
+
+4. PATCH: The PATCH method is similar to the PUT method, but instead of replacing the entire resource, it updates only the specified fields provided in the request. 
+For example:
+   - `/users/{id}`: Update specific fields of an existing user by providing the updated data in the request body.
+
+5. DELETE: The DELETE method is used to delete resources from the server. It removes the specified resource from the system. 
+For example:
+   - `/users/{id}`: Delete a specific user by their ID.
+
+These are just a few examples of common API endpoints. 
+The specific endpoints and their functionality will vary depending on the application or service you are working with. 
+It's important to consult the API documentation or specification for the service you are using to understand the available endpoints and their usage.
+
+2) Path:
+In API design, a path refers to the part of the URL or URI (Uniform Resource Identifier) that comes after the domain name or base URL. 
+It identifies a specific resource or endpoint within the API. The path helps define the structure and hierarchy of the API's resources and determines how clients can interact with them.
+
+Here's an example of an API path:
+https://api.example.com/users/{id}
+In this example, 
+the base URL is https://api.example.com, and the path is /users/{id}. 
+The {id} portion is a placeholder that represents a specific user's identifier.
+
+API paths can contain variables, parameters, or placeholders that are replaced with actual values when making requests. 
+These placeholders provide flexibility and allow for dynamic interaction with the API. 
+In the example above, the {id} placeholder would be replaced with an actual user ID, such as /users/123.
+Paths can also have multiple segments, representing different levels or resources in the API's hierarchy. 
+
+For instance:
+https://api.example.com/products/categories/electronics
+In this case, the path /products/categories/electronics represents a specific category within the "products" resource. 
+The path segments help organize and structure the API's resources logically.
+
+It's important to define clear and meaningful paths in your API design to make it intuitive and easier for clients to understand and interact with the available resources. 
+Proper documentation and adhering to RESTful principles can help ensure consistency and usability in your API paths.
+
+3) Parameters:
+Parameters in an API refer to additional information that can be included in a request to provide specific instructions or criteria to the server. 
+Parameters are typically included in the URL or request body and are used to customize the behavior or filter the response of an API endpoint.
+Query parameters are appended to the end of the URL after a question mark (?). 
+They are used to modify the request or filter the response. Each parameter is represented by a key-value pair and separated by an ampersand (&). 
+For example:
+https://api.example.com/products?category=electronics&limit=10
+
+In this example, category and limit are query parameters. The server can use these parameters to filter the products based on the "electronics" category and limit the response to 10 items.
+Parameters provide a flexible way to interact with an API and enable customization and filtering of the returned data. 
+The specific parameters available for each API endpoint will depend on the design and documentation of the API itself. 
+It's important to consult the API documentation or specification to understand the available parameters and their usage for each endpoint.
+
+4) Authentication : 
+The way to limit the usage of your API. They identify you as a developer. How often you are using the API. And based on that, they will limit you
+or charge you.	
+
+POSTMAN:
+It is a free tool used to test APIs.

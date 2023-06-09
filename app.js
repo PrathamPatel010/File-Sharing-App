@@ -22,5 +22,12 @@ app.get('/', (req, res) => {
 })
 
 app.post('/upload', upload.single('file'), (req, res) => {
-    res.send('Hii');
+    const fileData = {
+        path: req.file.path,
+        originalName: req.file.originalname,
+        password: req.body.password,
+        downloadCount: 1
+    }
+    console.log(fileData);
+    res.send('success');
 })
