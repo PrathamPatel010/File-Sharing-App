@@ -1,15 +1,18 @@
+require('dotenv').config();
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const { connectDb } = require('./db');
+const File = require('./models/File');
 
 // app initializatinon
 const app = express();
 const upload = multer({ dest: "uploads" });
 app.set('view engine', 'ejs');
+connectDb();
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is listening on port ${process.env.PORT}`);
 })
 
 // routes
