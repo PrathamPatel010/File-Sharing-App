@@ -3,7 +3,8 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const { connectDb } = require('./db');
-const File = require('./models/File');
+const File = require('./models/File')
+const bcrypt = require('bcrypt');
 
 // app initializatinon
 const app = express();
@@ -21,13 +22,14 @@ app.get('/', (req, res) => {
     res.render(indexFile);
 })
 
-app.post('/upload', upload.single('file'), (req, res) => {
+app.post('/upload', upload.single('file'), async(req, res) => {
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     const fileData = {
         path: req.file.path,
         originalName: req.file.originalname,
-        password: req.body.password,
-        downloadCount: 1
-    }
-    console.log(fileData);
+        password: hashedPassword,
+    };
+    const file = await File.create(fileData);
+    console.log(file);
     res.send('success');
 })
