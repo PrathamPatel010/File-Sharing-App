@@ -1,0 +1,22 @@
+{
+    "name": "file-sharing-app",
+    "version": "1.0.0",
+    "description": "A secured password protected file sharing application built using node express mongoDB",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon app.js"
+    },
+    "author": "Pratham Patel",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.1.0",
+        "dotenv": "^16.1.4",
+        "ejs": "^3.1.9",
+        "express": "^4.18.2",
+        "mongoose": "^7.2.2",
+        "multer": "^1.4.5-lts.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.22"
+    }
+}
