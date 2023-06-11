@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 // app initializatinon and middlewares
 const app = express();
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 const upload = multer({ dest: "uploads" });
 app.set('view engine', 'ejs');
 connectDb();
@@ -31,14 +32,24 @@ app.post('/upload', upload.single('file'), async(req, res) => {
         password: hashedPassword,
     };
     const file = await File.create(fileData);
-    console.log(file);
     res.render('index', { fileLink: `${req.headers.origin}/file/${file.id}` });
 })
 
-app.get('/file/:id', async(req, res) => {
+app.route('/file/:id').get(downloadHandler).post(downloadHandler);
+
+async function downloadHandler(req, res) {
     const file = await File.findById(req.params.id);
+    if (req.body.password == null) {
+        res.render('password');
+        return;
+    }
+    const passwordOk = await bcrypt.compare(req.body.password, file.password);
+    if (!passwordOk) {
+        res.render('password', { error: true });
+        return;
+    }
     file.downloadCount++;
     console.log(file);
     await file.save();
     res.download(file.path, file.originalName);
-})
+}
