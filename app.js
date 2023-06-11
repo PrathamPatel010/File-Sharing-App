@@ -1,4 +1,5 @@
 require('dotenv').config();
+const mongoose = require('mongoose');
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
@@ -6,17 +7,27 @@ const { connectDb } = require('./db');
 const File = require('./models/File')
 const bcrypt = require('bcrypt');
 
-// app initializatinon and middlewares
+// app initializatinon
 const app = express();
+const PORT = process.env.PORT || 3000;
+// database connection
+mongoose.set('strictQuery', false);
+connectDb()
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`Server is listening on port ${PORT}`);
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+// middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 const upload = multer({ dest: "uploads" });
 app.set('view engine', 'ejs');
-connectDb();
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server is listening on port ${process.env.PORT}`);
-})
 
 // routes
 app.get('/', (req, res) => {

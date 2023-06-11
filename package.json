@@ -4,7 +4,9 @@
     "description": "A secured password protected file sharing application built using node express mongoDB",
     "main": "app.js",
     "scripts": {
-        "start": "nodemon app.js"
+        "start": "node app.js",
+        "dev": "nodemon app.js",
+        "build": "npm i"
     },
     "author": "Pratham Patel",
     "license": "ISC",
