@@ -22,10 +22,23 @@
                         <label for="Password">Password:</label>
                         <input class="form-control my-2" id="password" type="password" name="password" required />
                     </div>
-                    <button class="my-2 btn-success" id="btn-submit" type="submit">Share</button>
+                    <button class="my-2 btn-success" id="btn-share" type="submit">Share</button>
                 </form>
             </div>
         </div>
+    </section>
+
+    <section>
+        <% if(locals.fileLink!=null) { %>
+            <div class="my-3 text-center">
+                Your File is uploaded
+                <div class="my-2">
+                    <a href="<%= locals.fileLink %>">
+                        Click here to download
+                    </a>
+                </div>
+            </div>
+            <% } %>
     </section>
 </body>
 
