@@ -6,8 +6,9 @@ const { connectDb } = require('./db');
 const File = require('./models/File')
 const bcrypt = require('bcrypt');
 
-// app initializatinon
+// app initializatinon and middlewares
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 const upload = multer({ dest: "uploads" });
 app.set('view engine', 'ejs');
 connectDb();
@@ -31,5 +32,13 @@ app.post('/upload', upload.single('file'), async(req, res) => {
     };
     const file = await File.create(fileData);
     console.log(file);
-    res.send('success');
+    res.render('index', { fileLink: `${req.headers.origin}/file/${file.id}` });
+})
+
+app.get('/file/:id', async(req, res) => {
+    const file = await File.findById(req.params.id);
+    file.downloadCount++;
+    console.log(file);
+    await file.save();
+    res.download(file.path, file.originalName);
 })
