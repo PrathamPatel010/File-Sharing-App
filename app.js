@@ -49,11 +49,11 @@ app.post('/upload', upload.single('file'), async(req, res) => {
 app.route('/file/:id').get(downloadHandler).post(downloadHandler);
 
 async function downloadHandler(req, res) {
-    const file = await File.findById(req.params.id);
     if (req.body.password == null) {
         res.render('password');
         return;
     }
+    const file = await File.findById(req.params.id);
     const passwordOk = await bcrypt.compare(req.body.password, file.password);
     if (!passwordOk) {
         res.render('password', { error: true });
