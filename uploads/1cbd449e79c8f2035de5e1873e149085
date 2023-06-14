@@ -1,8 +1,0 @@
-﻿[20-05-23 11:41:17] info: Program: Starting Squirrel Updater: --createShortcut=Postman.exe --shortcut-locations=StartMenu,Desktop
-[20-05-23 11:41:17] info: ApplyReleasesImpl: About to create shortcuts for Postman.exe, rootAppDir C:\Users\Pratham Patel\AppData\Local\Postman\
-[20-05-23 11:41:17] info: ApplyReleasesImpl: Creating shortcut for Postman.exe => C:\Users\Pratham Patel\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Postman\Postman.lnk
-[20-05-23 11:41:17] info: ApplyReleasesImpl: About to save shortcut: C:\Users\Pratham Patel\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Postman\Postman.lnk (target C:\Users\Pratham Patel\AppData\Local\Postman\Postman.exe, workingDir C:\Users\Pratham Patel\AppData\Local\Postman\app-10.14.2, args , toastActivatorCSLID d56d0ae8-2c2a-5b45-bd3b-9973bc69da9e)
-[20-05-23 11:41:17] info: ApplyReleasesImpl: Creating shortcut for Postman.exe => C:\Users\Pratham Patel\Desktop\Postman.lnk
-[20-05-23 11:41:17] info: ApplyReleasesImpl: About to save shortcut: C:\Users\Pratham Patel\Desktop\Postman.lnk (target C:\Users\Pratham Patel\AppData\Local\Postman\Postman.exe, workingDir C:\Users\Pratham Patel\AppData\Local\Postman\app-10.14.2, args , toastActivatorCSLID d56d0ae8-2c2a-5b45-bd3b-9973bc69da9e)
-[20-05-23 11:41:17] info: ApplyReleasesImpl: Examining Pin: File Explorer.lnk
-[20-05-23 11:41:17] info: Program: Finished Squirrel Updater
