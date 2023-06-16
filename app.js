@@ -43,7 +43,28 @@ app.post('/upload', upload.single('file'), async(req, res) => {
         password: hashedPassword,
     };
     const file = await File.create(fileData);
-    res.render('index', { fileLink: `${req.headers.origin}/file/${file.id}` });
+
+    // Progress bar setup
+    let uploadedBytes = 0;
+    const totalBytes = req.file.size;
+
+    const progressHandler = () => {
+        const progress = Math.round((uploadedBytes / totalBytes) * 100);
+        // Send progress update to the client
+        res.write(JSON.stringify({ progress }));
+    };
+
+    req.on('data', (chunk) => {
+        uploadedBytes += chunk.length;
+        progressHandler();
+    });
+
+    req.on('end', () => {
+        // Send the final progress update to the client
+        res.end(JSON.stringify({ progress: 100 }));
+        console.log('Upload complete');
+    });
+    res.json({ progress: 100, fileLink: `${req.headers.origin}/file/${file.id}` });
 })
 
 app.route('/file/:id').get(downloadHandler).post(downloadHandler);
