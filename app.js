@@ -64,7 +64,7 @@ app.post('/upload', upload.single('file'), async(req, res) => {
         res.end(JSON.stringify({ progress: 100 }));
         console.log('Upload complete');
     });
-    res.json({ progress: 100, fileLink: `${req.headers.origin}/file/${file.id}` });
+    res.json({ progress: 100, fileLink: `${req.headers.origin}/file/${file.id}`, originalName: fileData.originalName });
 })
 
 app.route('/file/:id').get(downloadHandler).post(downloadHandler);
