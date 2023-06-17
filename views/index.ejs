@@ -33,12 +33,12 @@
                     </div>
                     <div class="col-12">
                         <label for="Password">Password:</label>
-                        <input class="form-control my-2" id="password" type="password" name="password" required />
+                        <input class="form-control my-2" id="password" type="password" name="password" autocomplete="new-password" required />
                     </div>
                     <button class="my-2 btn-success" id="btn-share" type="submit">Share</button>
-                    <div class="col-12">
-                        <progress id="progressBar" value="0" max="100">
-                        </progress>
+                    <div class="col-12 my-3">
+                        <progress id="progressBar" value="0" max="100"></progress>
+                        <span id="progressPercentage"></span>
                     </div>
                 </form>
             </div>
