@@ -1,8 +1,13 @@
     document.addEventListener('DOMContentLoaded', () => {
+        const fileInput = document.getElementById('file');
+        const passwordInput = document.getElementById('password');
         const progressBar = document.getElementById('progressBar');
         const progressPercentage = document.getElementById('progressPercentage');
         const uploadForm = document.getElementById('uploadForm');
-
+        fileInput.addEventListener('change', () => {
+            console.log('clicked');
+            passwordInput.value = '';
+        })
         const updateProgressBar = (progress) => {
             progressBar.value = progress;
             progressPercentage.textContent = `${progress}%`;
