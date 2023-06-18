@@ -37,10 +37,12 @@ app.get('/', (req, res) => {
 
 app.post('/upload', upload.single('file'), async(req, res) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+    const fileSizeInMb = (req.file.size) / 1048576;
     const fileData = {
         path: req.file.path,
         originalName: req.file.originalname,
         password: hashedPassword,
+        fileSize: `${fileSizeInMb} MB`,
     };
     const file = await File.create(fileData);
 

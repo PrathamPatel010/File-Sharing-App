@@ -18,6 +18,10 @@ const File = new mongoose.Schema({
         required: true,
         default: 0,
     },
+    fileSize: {
+        type: String,
+        required: true,
+    }
 })
 
 module.exports = mongoose.model('File', File);
