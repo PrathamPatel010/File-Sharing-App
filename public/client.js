@@ -7,4 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
             errorDiv.innerHTML = '';
         }
     });
+    const infoDiv = document.getElementById('file-info');
+    infoDiv.innerHTML = `
+    <h6>Enter password and download will start automatically</h6>
+    `;
 })
