@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="shortcut icon" href="/sharing-files.ico" type="image/x-icon">
+    <title>QuickShare</title>
+</head>
+
+<body>
+    <header class="header pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1>QuickShare</h1>
+                    <h2>A Password Protected File Sharing App</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="body-content justify-content-center align-items-center d-flex">
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+                    <div class="col-12">
+                        <label for="file">Select File:</label>
+                        <input class="form-control my-2" id="file" type="file" name="file" required />
+                    </div>
+                    <div class="col-12">
+                        <label for="Password">Password:</label>
+                        <input class="form-control my-2" id="password" type="password" name="password" autocomplete="new-password" required />
+                    </div>
+                    <button class="my-2 btn-success" id="btn-share" type="submit">Share</button>
+                    <div class="col-12 my-3">
+                        <progress id="progressBar" value="0" max="100"></progress>
+                        <span id="progressPercentage"></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer text-center pt-4 pt-md-5">
+        <div class="container d-flex flex-column">
+            <div class="row justify-content-center">
+                <div class="col-12 mt-4">
+                    <h5>Developed by Pratham</h5>
+                </div>
+                <div class="col-12 mt-3">
+                    <h6>Let's Connect On Socials</h6>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-4 text-center my-3">
+                        <a href="https://github.com/PrathamPatel010"><i class="fab fa-2x fa-github mx-2 mx-md-3"></i></a>
+                        <a href="https://twitter.com/Prathamtwts"><i class="fab fa-2x fa-twitter mx-2 mx-md-3"></i></a>
+                        <a href="https://www.linkedin.com/in/pratham-patel-08865821b"><i class="fab fa-2x fa-linkedin mx-2 mx-md-3"></i></a>
+                    </div>
+                </div>
+                <div class="col-12 mt-2">
+                    <small>©Pratham Patel</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="progress.js"></script>
+</body>
+
+</html>

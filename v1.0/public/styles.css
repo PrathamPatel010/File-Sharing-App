@@ -1,0 +1,27 @@
+:root {
+    --header-color: #E6E6FA;
+    --header-accent: #9B88C7;
+    --header-text: #333333;
+    --content-color: #E8E8FA;
+    --content-accent: #B18AC9;
+    --content-text: #6A5ACD;
+    --footer-color: #EAE9FB;
+    --footer-accent: #C39BD3;
+    --footer-text: #C71585;
+}
+
+.header {
+    background-color: var(--header-color);
+    color: var(--header-text);
+}
+
+.body-content {
+    background-color: var(--content-color);
+    color: var(--content-text);
+}
+
+.footer {
+    height: 50vh;
+    background-color: var(--footer-color);
+    color: var(--footer-text);
+}
