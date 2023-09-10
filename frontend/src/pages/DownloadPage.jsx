@@ -4,19 +4,35 @@ import { useParams } from 'react-router';
 const DownloadPage = () => {
     const backend_base = import.meta.env.VITE_BACKEND_BASE;
     const [password,setPassword] = useState('');
+    const [fileName,setFileName] = useState('');
+    const [fileSize,setFileSize] = useState('');
 
     // destructuring and renaming id to fileID using URL params
     const {id:fileID} = useParams();
 
+    // this handler will be called first to fetch file information 
     const getFileInfo = async() => {
         const response = await axios.get(`${backend_base}/file/${fileID}`);
-        console.log(response.data);
+        setFileName(response.data.originalName);
+        setFileSize(response.data.fileSize);
     }
 
-    const downloadFile = async(e) => {
-        try{
+    // handler that will be called when we try to download a file
+    const downloadFile = async (e) => {
+        try {
             e.preventDefault();
-            await axios.post(`${backend_base}/file/${fileID}`,{password},{withCredentials:true});
+            const response = await axios.post(`${backend_base}/file/${fileID}`, { password }, { responseType: 'blob' });
+            
+            // here we define blob object and use it to trigger download
+            const blob = new Blob([response.data],{type:response.headers['Content-Type']});
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display='none';
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
         } catch(err){
             console.log(err);
         }
@@ -29,12 +45,15 @@ const DownloadPage = () => {
     return(
         <>
             <div className="file-info-div text-center mt-4">
-                <h3>Enter Password to download</h3>
+                <h3>File-Information</h3>
+                <h5>File-Name: {fileName}</h5>
+                <h5>File-Size: {fileSize}</h5>
             </div>
             <div>
                 <article>
-                    <form onSubmit={downloadFile} className="form-download mt-3">
-                        <input type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} className="password-input form-control" placeholder="password"/>
+                    <form onSubmit={downloadFile} className="form-download mt-5">
+                        <h3>Enter Password to download</h3>
+                        <input type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} className="password-input form-control" placeholder="password" autoComplete="off" autoFocus={false} required/>
                         <button type="submit" className="btn btn-success mt-3">Download</button>
                     </form>
                 </article>
