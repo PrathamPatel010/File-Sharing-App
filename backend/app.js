@@ -64,21 +64,24 @@ app.post('/api/upload', upload.single('file'), async(req, res) => {
     }
 })
 
+// this handler will return file information based on file-id
 app.get('/file/:id', async(req, res) => {
     const fileID = req.params.id;
     const fileInfo = await File.findById(fileID).select('-_id fileSize originalName');
     res.json(fileInfo);
 })
 
+
+// this handler will check password and enable user to download file
 app.post('/file/:id', async(req, res) => {
     try {
         const fileID = req.params.id;
-        const file = await File.findById(fileID);
-        file.downloadCount++;
-        console.log(file);
-        await file.save();
-        res.download(file.path, file.originalName);
+        // NOTE: password checking functionality to be developed
+        const password = req.body.password;
+        const fileInfo = await File.findById(fileID);
+        res.download(fileInfo.path, fileInfo.originalName);
     } catch (err) {
         console.log(err);
+        res.json(err.message);
     }
-})
+});

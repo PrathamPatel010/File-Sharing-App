@@ -24,7 +24,6 @@ const Form = () => {
                     setUploadPercentage(percentageCompleted);
                 },
             });
-            console.log(response.data);
             setLink(response.data.link);
         } catch(err){
             console.log(err.message);
@@ -53,10 +52,7 @@ const Form = () => {
                 <div  className="link-div">
                     <a href={link}>Download Link</a>
                 </div>
-            )
-
-            }
-
+            )}
         </>
     )
 }
