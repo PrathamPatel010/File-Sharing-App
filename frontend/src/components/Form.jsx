@@ -6,6 +6,7 @@ const Form = () => {
     const [password,setPassword] = useState('');
     const backend_base = import.meta.env.VITE_BACKEND_BASE;
     const [uploadPercentage,setUploadPercentage] = useState(0);
+    const [link,setLink] = useState('');
 
     // handler for making request to backend
     const handleSubmit = async(e) => {
@@ -24,6 +25,7 @@ const Form = () => {
                 },
             });
             console.log(response.data);
+            setLink(response.data.link);
         } catch(err){
             console.log(err.message);
         }
@@ -49,7 +51,7 @@ const Form = () => {
 
             {(uploadPercentage==100) && (
                 <div  className="link-div">
-                    <a>Download Link</a>
+                    <a href={link}>Download Link</a>
                 </div>
             )
 

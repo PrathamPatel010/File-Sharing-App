@@ -6,7 +6,8 @@ const frontend_base = process.env.FRONTEND_URL;
 const app = express();
 const cors = require('cors');
 const corsOption = {
-    origin: frontend_base
+    origin: frontend_base,
+    credentials: true,
 }
 const multer = require('multer');
 const upload = multer({ dest: "uploads" });
@@ -56,9 +57,28 @@ app.post('/api/upload', upload.single('file'), async(req, res) => {
         }
         const response = await File.create(fileData);
         console.log(response);
-        res.json({ message: "File Uploaded", Info: response });
+        res.json({ message: "File Uploaded", Info: response, link: `${req.headers.origin}/file/${response.id}` });
     } catch (err) {
         console.log(err.message);
         res.json({ message: err.message });
+    }
+})
+
+app.get('/file/:id', async(req, res) => {
+    const fileID = req.params.id;
+    const fileInfo = await File.findById(fileID).select('-_id fileSize originalName');
+    res.json(fileInfo);
+})
+
+app.post('/file/:id', async(req, res) => {
+    try {
+        const fileID = req.params.id;
+        const file = await File.findById(fileID);
+        file.downloadCount++;
+        console.log(file);
+        await file.save();
+        res.download(file.path, file.originalName);
+    } catch (err) {
+        console.log(err);
     }
 })

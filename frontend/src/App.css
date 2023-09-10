@@ -50,3 +50,14 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.form-download {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.password-input {
+    width: 60%;
+}
