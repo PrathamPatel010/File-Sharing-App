@@ -30,3 +30,23 @@ body {
 .form-main input {
     width: 60%;
 }
+
+.progress-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-bar {
+    color: black;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    height: fit-content;
+}
+
+.link-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
