@@ -56,7 +56,6 @@ app.post('/api/upload', upload.single('file'), async(req, res) => {
             fileSize: `${fileInfo.size/1048576} MB`,
         }
         const response = await File.create(fileData);
-        console.log(response);
         res.json({ message: "File Uploaded", Info: response, link: `${req.headers.origin}/file/${response.id}` });
     } catch (err) {
         console.log(err.message);
@@ -78,7 +77,7 @@ app.get('/file/:id', async(req, res) => {
     } catch (err) {
         console.log(err.message);
     }
-})
+});
 
 
 // this handler will check password and enable user to download file
