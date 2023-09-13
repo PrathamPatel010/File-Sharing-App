@@ -6,24 +6,44 @@ const DownloadPage = () => {
     const [password,setPassword] = useState('');
     const [fileName,setFileName] = useState('');
     const [fileSize,setFileSize] = useState('');
+    const [acknowledgment,setAcknowledgment] = useState('');
 
     // destructuring and renaming id to fileID using URL params
     const {id:fileID} = useParams();
 
     // this handler will be called first to fetch file information 
     const getFileInfo = async() => {
-        const response = await axios.get(`${backend_base}/file/${fileID}`);
-        setFileName(response.data.originalName);
-        setFileSize(response.data.fileSize);
+        try{
+            const response = await axios.get(`${backend_base}/file/${fileID}`);
+            if(response.data.status==404){
+                setAcknowledgment(response.data.message);
+                return;
+            }
+            setFileName(response.data.originalName);
+            setFileSize(response.data.fileSize);
+        } catch(err){
+            console.log(err.message);
+        }
     }
 
     // handler that will be called when we try to download a file
     const downloadFile = async (e) => {
         try {
             e.preventDefault();
-            const response = await axios.post(`${backend_base}/file/${fileID}`, { password }, { responseType: 'blob' });
-            
+            setAcknowledgment('Processing...');
+            const response = await axios.post(`${backend_base}/file/${fileID}`, { password });
+            if(response.data && response.data.status==404){
+                console.log(response.data.message);
+                setAcknowledgment(response.data.message);
+                return;
+            }
+            if(response.data && response.data.status==401){
+                console.log(response.data.message);
+                setAcknowledgment(response.data.message);
+                return;
+            }
             // here we define blob object and use it to trigger download
+            setAcknowledgment('File will be downloaded...');
             const blob = new Blob([response.data],{type:response.headers['Content-Type']});
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -56,6 +76,9 @@ const DownloadPage = () => {
                         <input type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} className="password-input form-control" placeholder="password" autoComplete="off" autoFocus={false} required/>
                         <button type="submit" className="btn btn-success mt-3">Download</button>
                     </form>
+                    <div className="div-ack text-center mt-4">
+                        <h5>{acknowledgment}</h5>
+                    </div>
                 </article>
             </div>
         </>

@@ -56,7 +56,6 @@ app.post('/api/upload', upload.single('file'), async(req, res) => {
             fileSize: `${fileInfo.size/1048576} MB`,
         }
         const response = await File.create(fileData);
-        console.log(response);
         res.json({ message: "File Uploaded", Info: response, link: `${req.headers.origin}/file/${response.id}` });
     } catch (err) {
         console.log(err.message);
@@ -66,19 +65,39 @@ app.post('/api/upload', upload.single('file'), async(req, res) => {
 
 // this handler will return file information based on file-id
 app.get('/file/:id', async(req, res) => {
-    const fileID = req.params.id;
-    const fileInfo = await File.findById(fileID).select('-_id fileSize originalName');
-    res.json(fileInfo);
-})
+    try {
+        const fileID = req.params.id;
+        const fileInfo = await File.findById(fileID).select('-_id fileSize originalName');
+
+        // case: file not found
+        if (!fileInfo) {
+            return res.json({ status: 404, message: 'No File Found' });
+        }
+        res.json(fileInfo);
+    } catch (err) {
+        console.log(err.message);
+    }
+});
 
 
 // this handler will check password and enable user to download file
 app.post('/file/:id', async(req, res) => {
     try {
         const fileID = req.params.id;
-        // NOTE: password checking functionality to be developed
         const password = req.body.password;
+
+        // case: file not found
         const fileInfo = await File.findById(fileID);
+        if (!fileInfo) {
+            return res.json({ status: 404, message: 'No file found!!' });
+        }
+
+        // case: wrong password entered
+        const passCheck = await bcrypt.compare(password, fileInfo.password);
+        if (!passCheck) {
+            return res.json({ status: 401, message: 'Wrong Password!!' });
+        }
+
         res.download(fileInfo.path, fileInfo.originalName);
     } catch (err) {
         console.log(err);
