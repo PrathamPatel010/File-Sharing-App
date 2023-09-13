@@ -12,17 +12,33 @@ const DownloadPage = () => {
 
     // this handler will be called first to fetch file information 
     const getFileInfo = async() => {
-        const response = await axios.get(`${backend_base}/file/${fileID}`);
-        setFileName(response.data.originalName);
-        setFileSize(response.data.fileSize);
+        try{
+            const response = await axios.get(`${backend_base}/file/${fileID}`);
+            if(response.data.status==404){
+                setFileName('No File Found');
+                setFileSize(0);
+                return;
+            }
+            setFileName(response.data.originalName);
+            setFileSize(response.data.fileSize);
+        } catch(err){
+            console.log(err.message);
+        }
     }
 
     // handler that will be called when we try to download a file
     const downloadFile = async (e) => {
         try {
             e.preventDefault();
-            const response = await axios.post(`${backend_base}/file/${fileID}`, { password }, { responseType: 'blob' });
-            
+            const response = await axios.post(`${backend_base}/file/${fileID}`, { password });
+            if(response.data && response.data.status==404){
+                console.log(response.data.message);
+                return;
+            }
+            if(response.data && response.data.status==401){
+                console.log(response.data.message);
+                return;
+            }
             // here we define blob object and use it to trigger download
             const blob = new Blob([response.data],{type:response.headers['Content-Type']});
             const url = window.URL.createObjectURL(blob);
