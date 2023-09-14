@@ -6,7 +6,7 @@ const Form = () => {
     const [password,setPassword] = useState('');
     const backend_base = import.meta.env.VITE_BACKEND_BASE;
     const [uploadPercentage,setUploadPercentage] = useState(0);
-    const [link,setLink] = useState('');
+    const [fileID,setFileID] = useState(null);
 
     // handler for making request to backend
     const handleSubmit = async(e) => {
@@ -24,7 +24,7 @@ const Form = () => {
                     setUploadPercentage(percentageCompleted);
                 },
             });
-            setLink(response.data.link);
+            setFileID(response.data.fileID);
         } catch(err){
             console.log(err.message);
         }
@@ -33,7 +33,7 @@ const Form = () => {
     return(
         <>
             <form onSubmit={handleSubmit} className="form-main my-3" encType="multipart/form-data">
-                <label htmlFor="file">Select file</label>
+                <label htmlFor="file">Just Select file, Set password and share</label>
                 <input type="file" name="file" required/>
                 <input type="password" name="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder="Set Password" className="form-control" autoComplete="off" required/>
                 <button type="submit" className="btn btn-success mt-3">Share</button>
@@ -48,9 +48,9 @@ const Form = () => {
                 </div>
             )}
 
-            {(uploadPercentage==100) && (
+            {(uploadPercentage==100 && fileID!=null) && (
                 <div  className="link-div">
-                    <a href={link}>Download Link</a>
+                    <a href={`/file/${fileID}`}>Click Here to download</a>
                 </div>
             )}
         </>
