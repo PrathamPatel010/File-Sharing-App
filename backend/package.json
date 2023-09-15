@@ -1,5 +1,5 @@
 {
-    "name": "quickshare-backend",
+    "name": "backend",
     "version": "1.0.0",
     "description": "Backend for my app-QuickShare",
     "main": "app.js",
