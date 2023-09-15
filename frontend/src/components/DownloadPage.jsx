@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import { useParams } from 'react-router';
+
 const DownloadPage = () => {
     const backend_base = import.meta.env.VITE_BACKEND_BASE;
     const [password,setPassword] = useState('');
@@ -43,7 +44,7 @@ const DownloadPage = () => {
                 return;
             }
             // here we define blob object and use it to trigger download
-            setAcknowledgment('File will be downloaded...');
+            setAcknowledgment('Password Accepted... File will be downloaded...');
             const blob = new Blob([response.data],{type:response.headers['Content-Type']});
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -60,7 +61,7 @@ const DownloadPage = () => {
 
     useEffect(()=>{
         getFileInfo();
-    },[fileID]);
+    },[]);
 
     return(
         <>

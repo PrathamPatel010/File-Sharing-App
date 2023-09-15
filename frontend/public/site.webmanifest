@@ -1,6 +1,6 @@
 {
     "name": "QuickShare",
-    "short_name": "QuickShare",
+    "short_name": "quickshare",
     "description": "Password Protected File Sharing App",
     "icons": [{
             "src": "/android-chrome-192x192.png",
