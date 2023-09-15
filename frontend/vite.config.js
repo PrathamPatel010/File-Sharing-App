@@ -3,7 +3,8 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa';
 
 const manifestForPlugin = {
-    registerType: "prompt",
+    registerType: 'prompt',
+    includeAssets: ['maskable_1.png', 'maskable_2.png', 'android-chrome-512x512.png'],
     manifest: {
         name: "QuickShare",
         short_name: "QuickShare",
