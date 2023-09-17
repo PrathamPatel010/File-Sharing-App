@@ -30,6 +30,13 @@ const Form = () => {
         }
     }
 
+    // handler for redirecting to downloadPage
+    const handleRedirect = (e) => {
+        e.preventDefault();
+        console.log(downloadLink);
+        window.location.href=downloadLink;
+    }
+
     return(
         <>
             <form onSubmit={handleSubmit} className="form-main my-3" encType="multipart/form-data">
@@ -50,7 +57,7 @@ const Form = () => {
 
             {(uploadPercentage==100 && downloadLink!='') && (
                 <div  className="link-div">
-                    <a href={downloadLink}>Click Here to download</a>
+                    <a href={downloadLink} onClick={handleRedirect}>Click Here to download</a>
                 </div>
             )}
         </>
