@@ -1,7 +1,7 @@
 import './App.css'
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom';
-import MainPage from './Components/MainPage';
-import DownloadPage from './Components/DownloadPage';
+import MainPage from './Component/MainPage';
+import DownloadPage from './Component/DownloadPage';
 
 function App() {
   return (
