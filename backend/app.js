@@ -53,7 +53,7 @@ app.post('/api/upload', upload.single('file'), async(req, res) => {
             path: fileInfo.path,
             originalName: fileInfo.originalname,
             password: hashedPassword,
-            fileSize: `${fileInfo.size/1048576} MB`,
+            fileSize: `${(fileInfo.size/1048576).toFixed(2)} MB`,
         }
         const response = await File.create(fileData);
         res.json({ message: "File Uploaded", downloadLink: `${req.headers.origin}/file/${response._id}` });

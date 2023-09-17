@@ -38,8 +38,8 @@ const manifestForPlugin = {
         scope: '/',
         start_url: "/",
         orientation: 'portrait'
-    },
-};
+    }
+}
 
 export default defineConfig({
     base: "./",
