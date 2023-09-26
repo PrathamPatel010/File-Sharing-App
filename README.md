@@ -1,9 +1,7 @@
+# For v1.0
 # File-Sharing-App
 This is a File-sharing application built using Node.js, Express.js, MongoDB, and EJS. 
 It provides a secure and password-protected environment for users to upload, store, and share files.
-
-## Link to application 
-https://quickshare-f63k.onrender.com/
 
 ## Features
 - Password-protected file uploads
@@ -25,7 +23,7 @@ git clone https://github.com/PrathamPatel010/File-Sharing-App.git
 ```
 2. Change to the project directory:
 ```
-cd File-Sharing-App
+cd v1.0
 ```
 3. Install the dependencies:
 ```
