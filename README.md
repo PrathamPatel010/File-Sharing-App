@@ -1,3 +1,7 @@
+# Note
+Currently I am trying to develop it using MERN stack. So, newer version is work in progress.
+If you want to refer to older version, you can refer to v1.0 docs below.
+
 # For v1.0
 # File-Sharing-App
 This is a File-sharing application built using Node.js, Express.js, MongoDB, and EJS. 
