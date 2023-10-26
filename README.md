@@ -1,4 +1,3 @@
-# For v1.0
 # File-Sharing-App
 This is a File-sharing application built using Node.js, Express.js, MongoDB, and EJS. 
 It provides a secure and password-protected environment for users to upload, store, and share files.
