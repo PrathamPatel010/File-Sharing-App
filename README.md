@@ -2,6 +2,9 @@
 This is a File-sharing application built using Node.js, Express.js, MongoDB, and EJS. 
 It provides a secure and password-protected environment for users to upload, store, and share files.
 
+## Link to live web app hosted on Azure Cloud as App Service
+http://quickshare.azurewebsites.net
+
 ## Features
 - Password-protected file uploads
 - File storage and management
