@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     fileLinkContainer.innerHTML = `
                     ${response.originalName} is uploaded
                     <div class="py-2">
-                        <a href="${response.fileLink}">
+                        <a href="${response.fileLink}" target="_blank" rel="noopener noreferrer">
                             Click here to download
                         </a>
                     </div>
