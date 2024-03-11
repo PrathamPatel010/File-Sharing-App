@@ -66,8 +66,8 @@ app.post('/upload', upload.single('file'), async(req, res) => {
         res.end(JSON.stringify({ progress: 100 }));
         console.log('Upload complete');
     });
-    res.json({ progress: 100, fileLink: `${req.headers.origin}/file/${file.id}`, originalName: fileData.originalName });
-})
+    res.json({ progress: 100, fileLink: `${req.headers.origin}/file/${file.id}`, originalName: fileData.originalName, fileSize:fileSizeInMb});
+});
 
 app.route('/file/:id').get(downloadHandler).post(downloadHandler);
 
@@ -87,3 +87,13 @@ async function downloadHandler(req, res) {
     await file.save();
     res.download(file.path, file.originalName);
 }
+
+app.get('/fileInfo/:id',async(req,res)=>{
+    const id = req.params?.id;
+    const file = await File.findById(id);
+    if (!file){
+        return res.json({status:404,message:"File Not Found!!"});
+    }
+    const fileSizeInMB = (parseFloat(file.fileSize.split('MB')[0])).toFixed(2);
+    return res.json({status:200,name:file.originalName, size:fileSizeInMB});
+});
