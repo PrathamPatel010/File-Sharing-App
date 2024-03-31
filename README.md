@@ -1,3 +1,11 @@
+# Simple Working of the web-application
+
+1.Select the file and click on share
+![Alt text](photos/01.png)
+
+2. On download page, you need to provide password to start file download
+![Alt text](photos/02.png)
+
 # File-Sharing-App
 This is a File-sharing application built using Node.js, Express.js, MongoDB, and EJS. 
 It provides a secure and password-protected environment for users to upload, store, and share files.
@@ -13,7 +21,7 @@ http://quickshare.azurewebsites.net
 - User-friendly interface using EJS templates
 
 ## Prerequisites
-Before running this application, ensure that you have the following software installed:
+Before running this application in development environment, ensure that you have the following software installed:
 - Node.js: [Download and install Node.js](https://nodejs.org)
 - MongoDB: [Download and install MongoDB](https://www.mongodb.com)
 
